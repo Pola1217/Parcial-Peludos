@@ -4,17 +4,17 @@ import processing.core.PApplet;
 
 public class Dog implements Comparable<Dog> {
 	
-private PApplet app;
+	private PApplet app;
 	
-	//private int id;
+	private int id;
+
+	private String  name, breed, date;
 	
-	private String id, name, breed;
 	
-	private String date;
-	
-	public Dog(PApplet app, String id, String name, String breed, String date) {
+	public Dog(PApplet app, int id, String name, String breed, String date) {
 		
 		this.app=app;
+		
 		this.id=id;
 		this.name=name;
 		this.breed=breed;
@@ -22,6 +22,7 @@ private PApplet app;
 		
 	}
 	
+	//info about the dogs
 	public void drawInfo(int x, int y) {
 
 		app.text("Id:" + id, x, y);
@@ -30,8 +31,6 @@ private PApplet app;
 		app.text("Date:" + date, x, y + 80);
 
 	}
-	
-	
 
 	public PApplet getApp() {
 		return app;
@@ -41,11 +40,11 @@ private PApplet app;
 		this.app = app;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -74,10 +73,11 @@ private PApplet app;
 	}
 
 	@Override
-	public int compareTo(Dog o) {
+	public int compareTo(Dog nextDog) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.id-nextDog.getId();
 	}
 
+	
 	
 }

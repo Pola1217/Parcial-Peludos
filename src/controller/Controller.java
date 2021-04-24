@@ -18,6 +18,8 @@ public class Controller {
 		logic = new Logic(app);
 		
 		logic.createtext(app);
+		logic.createdog(app);
+		
 	}
 
 	public void sortList(char key) {
@@ -29,5 +31,23 @@ public class Controller {
 		
 		return logic.getDog();
 	}
+
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
+	public Logic getLogic() {
+		return logic;
+	}
+
+	public void setLogic(Logic logic) {
+		this.logic = logic;
+	}
+	
+	
 
 }

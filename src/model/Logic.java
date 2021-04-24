@@ -1,6 +1,6 @@
 package model;
 
-
+import java.util.Collections;
 import java.util.LinkedList;
 
 import processing.core.PApplet;
@@ -14,6 +14,10 @@ public class Logic {
 	
 	private LinkedList<Dog> dog;
 	
+	DogName Name;
+	DogBreed Breed;
+	DogDate Date;
+	
 	private String[] saveId, saveName, saveBreed, saveDate;
 	
 	public Logic (PApplet app) {
@@ -21,6 +25,10 @@ public class Logic {
 		this.app = app;
 		
 		dog = new LinkedList<Dog>();
+		
+		Name = new DogName();
+		Breed = new DogBreed();
+		Date = new DogDate();
 		
 		saveId = new String[5];
 		saveName = new String[5];
@@ -34,26 +42,31 @@ public class Logic {
 		
 		text1 = app.loadStrings("texto/txt1.txt");
 		text2 = app.loadStrings("texto/txt2.txt");
+	}
+	
+	
+	public void createdog (PApplet app) {
 		
 		for (int i = 0; i < text1.length; i++) {
 			
-			String[] Text1 = text1[i].split (",");
+			String[] Line1 = text1[i].split (" ");
 			
-			String id = Text1[0];
+			int id = Integer.parseInt (Line1[0]);
 			
-			String name = Text1[1];
+			String name = Line1[1];
 
 			for (int j = 0; j < text2.length; j++) {
 
-				String[] Text2 = text2[j].split(",");
+				String[] Line2 = text2[j].split(" ");
 
-				if (id ==  Text2[0]) {
+				if (id == Integer.parseInt (Line2[0])) {
 					
-					String breed = Text2[1];
+					String breed = Line2[1];
 					
-					String date = Text2[2];
+					String date = Line2[2];
 					
 					dog.add (new Dog (app, id, name, breed, date));
+					
 				}
 			}
 
@@ -61,9 +74,111 @@ public class Logic {
 		
 	}
 	
+	
 	public void sortList(char key) {
 		
+		switch (key) {
 		
+		//ID (natural)
+		case 'i':
+			
+			Collections.sort(dog);
+			
+			for (int i = 0; i < dog.size(); i++) {
+
+				String id = Integer.toString(dog.get(i).getId());
+				
+				String name = dog.get(i).getName().toLowerCase();
+				
+				String breed = dog.get(i).getBreed().toLowerCase();
+				
+				String date = dog.get(i).getDate();
+				
+				String line = id + " " + name + " " + breed + " " + date;
+
+				saveId[i] = line;
+				
+				app.saveStrings("SaveId.txt", saveId);
+			}
+			
+			break;
+
+		//Name
+		case 'n':
+			
+			Collections.sort(dog, Name);
+			
+			for (int i = 0; i < dog.size(); i++) {
+
+				String id = Integer.toString(dog.get(i).getId());
+				
+				String name = dog.get(i).getName().toLowerCase();
+				
+				String breed = dog.get(i).getBreed().toLowerCase();
+				
+				String date = dog.get(i).getDate();
+				
+				String line = id + " " + name + " " + breed + " " + date;
+
+				saveName[i] = line;
+
+				app.saveStrings("Savename.txt", saveName);
+			}
+			break;
+		
+		//Breed
+		case 'b':
+			
+			Collections.sort(dog, Breed);
+			
+			for (int i = 0; i < dog.size(); i++) {
+
+				String id = Integer.toString(dog.get(i).getId());
+				
+				String name = dog.get(i).getName().toLowerCase();
+				
+				String breed = dog.get(i).getBreed().toLowerCase();
+				
+				String date = dog.get(i).getDate();
+				
+				String line = id + " " + name + " " + breed + " " + date;
+
+				saveBreed[i] = line;
+
+				app.saveStrings("Savebreed.txt", saveBreed);
+			}
+			break;
+			
+		//Date
+		case 'd':
+			
+			Collections.sort(dog, Date);
+			
+			for (int i = 0; i < dog.size(); i++) {
+
+				String id = Integer.toString(dog.get(i).getId());
+				
+				String name = dog.get(i).getName().toLowerCase();
+				
+				String breed = dog.get(i).getBreed().toLowerCase();
+				
+				String date = dog.get(i).getDate();
+				
+				String line = id + " " + name + " " + breed + " " + date;
+
+
+				saveDate[i] = line;
+				
+
+				app.saveStrings("Savedate.txt", saveDate);
+			}
+			break;
+			
+		default:
+			
+			break;
+			
+		}
 		
 	}
 
