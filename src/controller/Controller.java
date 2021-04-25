@@ -18,7 +18,6 @@ public class Controller {
 		logic = new Logic(app);
 		
 		logic.createtext(app);
-		logic.createdog(app);
 		
 	}
 

@@ -27,8 +27,8 @@ public class Dog implements Comparable<Dog> {
 
 		app.text("Id:" + id, x, y);
 		app.text("Name:" + name, x, y + 20);
-		app.text("Breed:" + breed, x, y + 60);
-		app.text("Date:" + date, x, y + 80);
+		app.text("Breed:" + breed, x, y + 40);
+		app.text("Date:" + date, x, y + 60);
 
 	}
 

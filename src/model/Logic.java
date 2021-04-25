@@ -9,15 +9,19 @@ public class Logic {
 
 	private PApplet app;
 	
+	//text
 	private String[] text1;
 	private String[] text2;
 	
+	//list
 	private LinkedList<Dog> dog;
 	
+	//classes for partial ordering
 	DogName Name;
 	DogBreed Breed;
 	DogDate Date;
 	
+	//saves lists by attributes
 	private String[] saveId, saveName, saveBreed, saveDate;
 	
 	public Logic (PApplet app) {
@@ -42,10 +46,6 @@ public class Logic {
 		
 		text1 = app.loadStrings("texto/txt1.txt");
 		text2 = app.loadStrings("texto/txt2.txt");
-	}
-	
-	
-	public void createdog (PApplet app) {
 		
 		for (int i = 0; i < text1.length; i++) {
 			
@@ -58,8 +58,10 @@ public class Logic {
 			for (int j = 0; j < text2.length; j++) {
 
 				String[] Line2 = text2[j].split(" ");
-
-				if (id == Integer.parseInt (Line2[0])) {
+				
+				int id2 = Integer.parseInt (Line2[0]);
+				
+				if (id == id2) {
 					
 					String breed = Line2[1];
 					
@@ -71,12 +73,13 @@ public class Logic {
 			}
 
 		}
-		
+
 	}
 	
 	
 	public void sortList(char key) {
 		
+	//keys for the ordering	
 		switch (key) {
 		
 		//ID (natural)
