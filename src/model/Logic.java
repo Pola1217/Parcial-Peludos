@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Logic {
 
@@ -24,6 +25,9 @@ public class Logic {
 	//saves lists by attributes
 	private String[] saveId, saveName, saveBreed, saveDate;
 	
+	//dog images
+	PImage labrador, pastor, bulldog, rottweiler, husky; 
+	
 	public Logic (PApplet app) {
 		
 		this.app = app;
@@ -38,6 +42,7 @@ public class Logic {
 		saveName = new String[5];
 		saveBreed = new String[5];
 		saveDate = new String[5];
+		
 		
 		
 	}
@@ -67,15 +72,25 @@ public class Logic {
 					
 					String date = Line2[2];
 					
-					dog.add (new Dog (app, id, name, breed, date));
+					PImage doggys  = app.loadImage("../data/"+breed.replace(" ", "")+".jpeg"); 
+					
+					dog.add (new Dog (app, id, name, breed, date, doggys));
 					
 				}
 			}
-
 		}
-
 	}
 	
+	public void createDogs() {
+		
+		labrador = app.loadImage ("data/Labrador-retriever.jpeg");
+		pastor  = app.loadImage ("data/Pastor.jpeg");
+		bulldog  = app.loadImage ("data/Bulldog.jpeg");
+		rottweiler  = app.loadImage ("data/Rottweile-perro.jpeg");
+		husky  = app.loadImage ("data/husky-m.jpeg");
+		
+
+	}
 	
 	public void sortList(char key) {
 		
@@ -97,11 +112,14 @@ public class Logic {
 				
 				String date = dog.get(i).getDate();
 				
-				String line = id + " " + name + " " + breed + " " + date;
+				PImage doggys  = dog.get(i).getDoggy();
+				
+				String line = id + " " + name + " " + breed + " " + date + " " + doggys;
 
 				saveId[i] = line;
 				
 				app.saveStrings("SaveId.txt", saveId);
+				
 			}
 			
 			break;
@@ -121,12 +139,16 @@ public class Logic {
 				
 				String date = dog.get(i).getDate();
 				
-				String line = id + " " + name + " " + breed + " " + date;
+				PImage doggys  = dog.get(i).getDoggy();
+				
+				String line = id + " " + name + " " + breed + " " + date + " " + doggys;
 
 				saveName[i] = line;
 
 				app.saveStrings("Savename.txt", saveName);
+				
 			}
+			
 			break;
 		
 		//Breed
@@ -144,12 +166,16 @@ public class Logic {
 				
 				String date = dog.get(i).getDate();
 				
-				String line = id + " " + name + " " + breed + " " + date;
+				PImage doggys  = dog.get(i).getDoggy();
+				
+				String line = id + " " + name + " " + breed + " " + date + " " + doggys;
 
 				saveBreed[i] = line;
 
 				app.saveStrings("Savebreed.txt", saveBreed);
+				
 			}
+			
 			break;
 			
 		//Date
@@ -167,13 +193,14 @@ public class Logic {
 				
 				String date = dog.get(i).getDate();
 				
-				String line = id + " " + name + " " + breed + " " + date;
-
+				PImage doggys  = dog.get(i).getDoggy();
+				
+				String line = id + " " + name + " " + breed + " " + date + " " + doggys;
 
 				saveDate[i] = line;
 				
-
 				app.saveStrings("Savedate.txt", saveDate);
+				
 			}
 			break;
 			

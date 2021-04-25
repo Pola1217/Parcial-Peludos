@@ -2,10 +2,12 @@ package view;
 
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class Main extends PApplet {
 
 	Controller controller;
+	PFont roney, futura;
 	
 	public static void main(String[] args) {
 		
@@ -20,6 +22,9 @@ public class Main extends PApplet {
 	
 	public void setup() {
 		
+		roney = createFont("RooneySansBlk.OTF",17);
+		futura = createFont("Futura Book font.ttf",20);
+		
 		controller= new Controller(this);
 		
 	}
@@ -28,13 +33,16 @@ public class Main extends PApplet {
 		
 		//System.out.println(mouseX+","+mouseY);
 		
-		background(255);
+		background(219,252,255);
 		
-		textSize(20);
+		//textSize(20);
+		fill(50);
+		textFont(roney);
+		text("Fundación Peluditos Sin Hogar", 425,44);
+	
+		textSize(10);
 		fill(50);
 		
-		text("Fundación Peluditos Sin Hogar", 500,44);
-	
 		// user "instructions"
 		text("I = ID", 125, 110);
 		text("N = Name", 325, 110);
@@ -44,12 +52,13 @@ public class Main extends PApplet {
 		
 		for (int i = 0; i < controller.dog().size(); i++) {
 
-			textSize(15);
 			
-			System.out.println(controller.dog().get(i).getName());
-			System.out.println("si mi reina");
+			textFont(futura);
+			//System.out.println(controller.dog().get(i).getName());
+			//System.out.println("si mi reina");
+			
 			//draw dogs info
-			controller.dog().get(i).drawInfo(23+(205*i),300); 
+			controller.dog().get(i).drawInfo(53+(255*i),350); 
 			
 		}
 		
